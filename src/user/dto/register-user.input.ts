@@ -1,17 +1,16 @@
-import { InputType, Field } from '@nestjs/graphql';
-import { UserRole } from '../user.schema';
+// create-user.dto.ts
+import { IsNotEmpty, IsEmail } from 'class-validator';
 
-@InputType()
-export class RegisterUserInput {
-  @Field()
+export class CreateUserDto {
+  @IsNotEmpty()
   name: string;
 
-  @Field()
+  @IsEmail()
   email: string;
 
-  @Field()
+  @IsNotEmpty()
   password: string;
 
-  @Field(() => UserRole, { nullable: true })
-  role?: UserRole;
+  @IsNotEmpty()
+  role: string; // or use an enum if defined
 }
